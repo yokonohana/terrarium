@@ -1,6 +1,7 @@
 import { Router } from "express";
-import pool from '../src/db.js'; // импорт пула подключения к базе
+import pool from '../src/db.js';
 
+//не забыть добавить шифрование для пароля
 const router = Router();
 
 router.post('/login', async (req, res) => {
@@ -47,3 +48,4 @@ router.post('/register', async (req, res) => {
 });
 
 export default router;
+
