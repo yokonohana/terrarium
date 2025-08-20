@@ -28,304 +28,345 @@ export const settings = {
     'impact_force': null,
     'quantity_attacks': null,
   },
-  'skills': {
-    'Рукопашный бой': {
+  'skillsCombat': [
+    {
+      'name': 'Рукопашный бой',
       'description': "Дай противнику взглянуть на твой кулак поближе.",
       'difficulty': false,
       'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Метательное оружие': {
+    {
+      'name': 'Метательное оружие',
       'description': "Фашистам придётся ловить твои гранаты.",
       'difficulty': false,
       'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Оружие ближнего боя': {
+    {
+      'name': 'Оружие ближнего боя',
       'description': "Не хочешь, чтобы странник порезался от своего же ножа? Тогда улучшай.",
       'difficulty': false,
       'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Револьверы и Пистолеты': {
+    {
+      'name': 'Револьверы и Пистолеты',
       'description': "Для тех, чья мечта засадить кому-нибудь пулю калибра .44 Магнум в череп.",
       'difficulty': false,
       'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Ружья и Винтовки': {
+    {
+      'name': 'Ружья и Винтовки',
       'description': "Самая гибкая парочка: можно быть убойным вблизи и вдалеке.",
       'difficulty': false,
       'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Автоматика': {
+    {
+      'name': 'Автоматика',
       'description': "Для не жалеющих деньги на патроны.",
       'difficulty': false,
       'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Особое оружие': {
+    {
+      'name': 'Особое оружие',
       'description': "Самое громкое, что можно услышать в лесу.",
       'difficulty': true,
       'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Плавание': {
-      'description': "На тот случай если выпадешь из лодки.",
-      'difficulty': false,
-      'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Запугивание': {
-      'description': "Заставь их дрожать.",
-      'difficulty': false,
-      'parameter': 'Телосложение',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Наука': {
-      'description': "Химичь, вскрывай трупы, изучай траву.",
-      'difficulty': true,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Ремесло': {
-      'description': "Чинить оружие и снаряжение не помешает.",
-      'difficulty': true,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Медицина': {
-      'description': "Тебя будут очень любить, от тебя ведь будут зависеть жизни.",
-      'difficulty': true,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Тяжёлая техника': {
-      'description': "На тот случай, если тебе пригодится танк.",
-      'difficulty': false,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Выживание': {
-      'description': "Читай следы, охоться, рыбачь, разжигай огонь камушками.",
-      'difficulty': false,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Внимательность': {
-      'description': "Отвечает за то, заметишь ты вовремя врага, или нет.",
-      'difficulty': false,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Этикет': {
-      'description': "От него зависит, как ты покажешь себя в приличном обществе.",
-      'difficulty': false,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Шулерство': {
-      'description': "Позволяет мгновенно выиграть в азартной игре.",
-      'difficulty': false,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Торговля': {
-      'description': "Ещё один способ грабить людей.",
-      'difficulty': true,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Проницательность': {
-      'description': "Люди станут для тебя как открытые книги. Ты будешь понимать, чего они хотят, когда они врут и говорят правду.",
-      'difficulty': false,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Убеждение': {
-      'description': "Убеждай всех, что ты прав, даже когда ты не прав.",
-      'difficulty': false,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Обман': {
-      'description': "Обман, блеф, запутывание – это твой выбор.",
-      'difficulty': false,
-      'parameter': 'Интеллект',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Кража': {
-      'description': "При тебе лучше держать деньги подальше.",
-      'difficulty': false,
-      'parameter': 'Сила Воли',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Взлом': {
-      'description': "Запертые двери перестанут быть для тебя преградой.",
-      'difficulty': false,
-      'parameter': 'Сила Воли',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Первая помощь': {
-      'description': "Знать, как перевязать рану, хороший навык.",
-      'difficulty': false,
-      'parameter': 'Сила Воли',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Допрос': {
-      'description': "А ты знал, что есть бесчисленное количество способов выведать из человека информацию клещами? Теперь будешь знать.",
-      'difficulty': false,
-      'parameter': 'Сила Воли',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Творчество': {
-      'description': "Не так бесполезно, как кажется на первый взгляд: с помощью творчества можно управлять умами.",
-      'difficulty': true,
-      'parameter': 'Сила Воли',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Дрессировка': {
-      'description': "Если животина не слушается, то сделай так, чтобы слушалась.",
-      'difficulty': true,
-      'parameter': 'Сила Воли',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Взрывчатка и Ловушки': {
-      'description': "Для закладки и обезвреживания взрывающихся устройств и ловушек.",
-      'difficulty': false,
-      'parameter': 'Сила Воли',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Романс': {
-      'description': "Любовь - даже она станет тебе подвластна.",
-      'difficulty': false,
-      'parameter': 'Сила Воли',
-      'current_lvl': null,
-      'current_exp': null,
-      'fixed': false
-    },
-    'Станковое оружие': {
+    {
+      'name': 'Станковое оружие',
       'description': "Просто садись за станок и начинай печатать билетики на тот свет.",
       'difficulty': false,
       'parameter': 'Активность',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    }
+  ],
+  'skillsProfessional': [
+    {
+      'name': 'Плавание',
+      'description': "На тот случай если выпадешь из лодки.",
+      'difficulty': false,
+      'parameter': 'Телосложение',
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Скрытность': {
+    {
+      'name': 'Наука',
+      'description': "Химичь, вскрывай трупы, изучай траву.",
+      'difficulty': true,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Ремесло',
+      'description': "Чинить оружие и снаряжение не помешает.",
+      'difficulty': true,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Медицина',
+      'description': "Тебя будут очень любить, от тебя ведь будут зависеть жизни.",
+      'difficulty': true,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Тяжёлая техника',
+      'description': "На тот случай, если тебе пригодится танк.",
+      'difficulty': false,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Выживание',
+      'description': "Читай следы, охоться, рыбачь, разжигай огонь камушками.",
+      'difficulty': false,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Внимательность',
+      'description': "Отвечает за то, заметишь ты вовремя врага, или нет.",
+      'difficulty': false,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Шулерство',
+      'description': "Позволяет мгновенно выиграть в азартной игре.",
+      'difficulty': false,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Проницательность',
+      'description': "Люди станут для тебя как открытые книги. Ты будешь понимать, чего они хотят, когда они врут и говорят правду.",
+      'difficulty': false,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Кража',
+      'description': "При тебе лучше держать деньги подальше.",
+      'difficulty': false,
+      'parameter': 'Сила Воли',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Взлом',
+      'description': "Запертые двери перестанут быть для тебя преградой.",
+      'difficulty': false,
+      'parameter': 'Сила Воли',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Первая помощь',
+      'description': "Знать, как перевязать рану, хороший навык.",
+      'difficulty': false,
+      'parameter': 'Сила Воли',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Творчество',
+      'description': "Не так бесполезно, как кажется на первый взгляд: с помощью творчества можно управлять умами.",
+      'difficulty': true,
+      'parameter': 'Сила Воли',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Дрессировка',
+      'description': "Если животина не слушается, то сделай так, чтобы слушалась.",
+      'difficulty': true,
+      'parameter': 'Сила Воли',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Взрывчатка и Ловушки',
+      'description': "Для закладки и обезвреживания взрывающихся устройств и ловушек.",
+      'difficulty': false,
+      'parameter': 'Сила Воли',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Скрытность',
       'description': "Ты станешь тенью.",
       'difficulty': false,
       'parameter': 'Активность',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Верховая езда': {
+    {
+      'name': 'Верховая езда',
       'description': "Зачем ходить пешком, если можно ехать на лошади?",
       'difficulty': false,
       'parameter': 'Активность',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Водный транспорт (лёгкий)': {
+    {
+      'name': 'Водный транспорт (лёгкий)',
       'description': "Управляй лодками и катерами.",
       'difficulty': false,
       'parameter': 'Активность',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Водный транспорт (тяжёлый)': {
+    {
+      'name': 'Водный транспорт (тяжёлый)',
       'description': "Управляй кораблями.",
       'difficulty': false,
       'parameter': 'Активность',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Гужевой транспорт': {
+    {
+      'name': 'Гужевой транспорт',
       'description': "Весь тот транспорт, в которого запрягаются лошади и иная живность (телега, карате), может тобой управляться.",
       'difficulty': false,
       'parameter': 'Активность',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     },
-    'Вождение': {
+    {
+      'name': 'Вождение',
       'description': "Моторизированная техника – это вещь.",
       'difficulty': false,
       'parameter': 'Активность',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
-    },
-    'Жесты': {
+    }
+  ],
+  'skillsDialogue': [
+    {
+      'name': 'Жесты',
       'description': "Подойдёт, для случаев, когда надо что-то сообщить, но говорить нельзя.",
       'difficulty': true,
       'parameter': 'Активность',
-      'current_lvl': null,
-      'current_exp': null,
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Романс',
+      'description': "Любовь - даже она станет тебе подвластна.",
+      'difficulty': false,
+      'parameter': 'Сила Воли',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Допрос',
+      'description': "А ты знал, что есть бесчисленное количество способов выведать из человека информацию клещами? Теперь будешь знать.",
+      'difficulty': false,
+      'parameter': 'Сила Воли',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Убеждение',
+      'description': "Убеждай всех, что ты прав, даже когда ты не прав.",
+      'difficulty': false,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Обман',
+      'description': "Обман, блеф, запутывание – это твой выбор.",
+      'difficulty': false,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Запугивание',
+      'description': "Заставь их дрожать.",
+      'difficulty': false,
+      'parameter': 'Телосложение',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Этикет',
+      'description': "От него зависит, как ты покажешь себя в приличном обществе.",
+      'difficulty': false,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
+      'fixed': false
+    },
+    {
+      'name': 'Торговля',
+      'description': "Ещё один способ грабить людей.",
+      'difficulty': true,
+      'parameter': 'Интеллект',
+      'current_lvl': 0,
+      'current_exp': 0,
       'fixed': false
     }
-  },
+  ],
   'abilities': null,
   'health': {
     'mentality_lvl': null,

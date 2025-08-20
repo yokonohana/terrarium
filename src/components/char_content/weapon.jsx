@@ -45,7 +45,7 @@ export default function Weapon() {
       </div>
 
       {currentWeapon && (
-        <div className="bg-white w-full p-4 border mt-5 rounded-xl border-gray-400">
+        <div className="mt-10">
           <h1 className='text-center font-extrabold text-2xl mb-2'>СЛОТ {openIndex + 1}</h1>
           {weaponParams.map(({ key, path, value }) => (
             <div key={key} className="flex justify-between border-b border-gray-300 mb-2 mx-10">
