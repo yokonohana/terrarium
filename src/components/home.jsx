@@ -1,6 +1,7 @@
 import React from "react";
 import Header from './header.jsx';
 import Footer from './footer.jsx';
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -18,12 +19,11 @@ export default function Home() {
               – хороших, плохих, неоднозначных – и попытайся сделать
               ими хоть что-то значительное, прежде чем их сожрут монстры, или общество.
             </p>
-            <button className="mt-3 mx-auto py-2 px-4 bg-slate-500 rounded-xl w-40 shadow-md/40">
-              Подробней
-            </button>
-          </div>
-          <div className="text-white font-[Unbounded] text-[40px] mt-20 mx-10">
-            <h1>Новостная лента</h1>
+            <Link className="mt-3 select-none text-center mx-auto py-2 px-4 bg-slate-500 rounded-xl w-40 shadow-md/40" to={'/rules'}>
+              <button className="cursor-pointer">
+                Правила
+              </button>
+            </Link>
           </div>
         </main>
         <Footer />

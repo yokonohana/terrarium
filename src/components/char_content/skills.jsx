@@ -54,7 +54,7 @@ export default function Skills() {
                 {el.difficulty ? "Сложный навык" : "Простой навык"}
               </div>
 
-              <div>
+              <div className="mt-auto">
                 <div className="flex justify-between text-xs text-gray-500 mb-1">
                   <span>Уровень: {el.current_lvl}</span>
                   <span>
@@ -69,7 +69,8 @@ export default function Skills() {
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 mt-auto">
+                
                 <input
                   type="number"
                   className="mt-2 px-3 w-full rounded-lg text-sm border text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -124,7 +125,7 @@ export default function Skills() {
             <button
               className={`relative w-full px-6 py-3 rounded-xl font-semibold transition cursor-pointer duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1 ${
                 index === openIndex
-                  ? "bg-gray-200 text-gray-900 shadow-sm border border-gray-300"
+                  ? "bg-gray-200 text-gray-900 shadow-sm border border-gray-400"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               } active:scale-95`}
               onClick={() => setOpenIndex(index)}

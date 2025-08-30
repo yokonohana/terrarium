@@ -4,7 +4,7 @@ import { SiRoll20 } from "react-icons/si";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-black to-gray-900 border-t border-gray-700 text-gray-400 font-[Unbounded] py-2 px-8 grid grid-cols-3 items-center min-w-full select-none text-xs">
+    <footer className="bg-gradient-to-r bg-gray-900 border-t border-gray-700 text-gray-400 font-[Unbounded] py-2 px-8 grid grid-cols-3 items-center min-w-full select-none text-xs">
       <div className="flex flex-row justify-start gap-x-6">
         <div className="flex flex-col space-y-0.5">
           <p className="font-semibold text-sky-400 uppercase tracking-wide">Команда разработки:</p>

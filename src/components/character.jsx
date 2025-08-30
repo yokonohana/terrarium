@@ -3,6 +3,10 @@ import Header from './header.jsx';
 import Footer from './footer.jsx';
 import Weapon from './char_content/weapon.jsx';
 import Skills from './char_content/skills.jsx';
+import Armor from './char_content/armor.jsx';
+import Backpack from './char_content/backpack.jsx';
+import Persona from './char_content/persona.jsx';
+import Health from './char_content/health.jsx';
 import { useDispatch, useSelector } from "react-redux";
 import { getRandom, getAge, getCountry, getPoliticalView, getReligionView, getSex } from '../tools.js'
 import { updateField } from '../../store/charFormSlice.js'
@@ -87,9 +91,17 @@ export default function Character() {
   function getSection(index) {
     switch (index) {
       case 0:
-        return <Weapon />
+        return <Persona />
       case 1:
+        return <Weapon />
+      case 2:
         return <Skills />
+      case 3:
+        return <Armor />
+      case 4:
+        return <Health />
+      case 5:
+        return <Backpack />
       default:
         return null
     }
@@ -158,7 +170,7 @@ export default function Character() {
                 {extraParams.map(({ key, path, value }) => (
                   <div key={key} className="flex justify-between border-b border-gray-300 pb-1">
                     <span className="font-medium">{key}:</span>
-                    <input type="text" className="text-right font-semibold" value={value} onChange={e => dispatch(updateField({ path, value: e.target.value }))}/>
+                    <input type="text" className="text-right font-semibold" placeholder="Введите значение..." value={value} onChange={e => dispatch(updateField({ path, value: e.target.value }))}/>
                   </div>
                 ))}
               </div>
@@ -167,7 +179,7 @@ export default function Character() {
 
           <section className="flex-1 bg-white p-12 rounded-tr-2xl rounded-br-2xl shadow-inner flex flex-col">
             <div className="flex gap-6 mb-8 border-b border-gray-300 pb-4">
-              {["Оружие", "Навыки", "Броня", "Здоровье", "Заметки"].map((label, index) => (
+              {["О персонаже", "Оружие", "Навыки", "Части тела", "Здоровье", "Рюкзак"].map((label, index) => (
                 <button
                   key={label}
                   className={`relative px-6 py-3 rounded-lg font-semibold transition cursor-pointer duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1 ${

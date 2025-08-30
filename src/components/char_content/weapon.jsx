@@ -33,7 +33,7 @@ export default function Weapon() {
             <button
               className={`relative w-full px-6 py-3 rounded-lg font-semibold transition cursor-pointer duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1 ${
                 index === openIndex
-                  ? "bg-gray-300 text-gray-900 shadow-md border border-gray-400"
+                  ? "bg-gray-200 text-gray-900 shadow-md border border-gray-400"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               } active:scale-95 no-underline`}
               onClick={() => setOpenIndex(index)}
