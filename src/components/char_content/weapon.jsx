@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateField } from '../../../store/charFormSlice.js';
 
-export default function Weapon() {
+export default function Weapon({ value }) {
   const [openIndex, setOpenIndex] = useState(0);
-  const weapons = useSelector((state) => state.characterForm.form.weapons);
+  const { weapons } = value;
   const dispatch = useDispatch();
 
   const currentWeapon = weapons[openIndex] || {};

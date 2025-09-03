@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateField } from "../../../store/charFormSlice.js";
 
-export default function Backpack() {
+export default function Backpack({ value }) {
   const dispatch = useDispatch();
-  const backpack = useSelector((state) => state.characterForm.form.backpack);
+  const { backpack } = value;
 
   const handleChange = (path, value) => {
     const numberFields = [
@@ -21,7 +21,7 @@ export default function Backpack() {
   return (
     <div className="flex flex-col gap-6 w-full">
       
-      {/* Противогаз и Спецодежда */}
+      {/* Противогаз */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="flex flex-col bg-white rounded-2xl shadow-md border border-gray-400 overflow-hidden transition hover:shadow-lg">
           <div className="px-5 py-3 bg-gradient-to-r from-gray-100 to-gray-300 border-b border-gray-400">
@@ -49,6 +49,7 @@ export default function Backpack() {
           </div>
         </div>
 
+        {/* Спецодежда */}
         <div className="flex flex-col bg-white rounded-2xl shadow-md border border-gray-400 overflow-hidden transition hover:shadow-lg">
           <div className="px-5 py-3 bg-gradient-to-r from-gray-100 to-gray-300 border-b border-gray-400">
             <h2 className="text-lg font-semibold text-gray-800">Спецодежда</h2>
@@ -83,7 +84,7 @@ export default function Backpack() {
             <h2 className="text-lg font-semibold text-gray-800">Кошелёк</h2>
           </div>
           <div className="flex flex-col gap-4 p-5">
-            <input className={inputClass} value={backpack.wallet||""} onChange={e=>handleChange("backpack.wallet", e.target.value)}/>
+            <input type="number" className={inputClass} value={backpack.wallet||""} onChange={e=>handleChange("backpack.wallet", e.target.value)}/>
           </div>
         </div>
 
@@ -92,7 +93,7 @@ export default function Backpack() {
             <h2 className="text-lg font-semibold text-gray-800">Банк</h2>
           </div>
           <div className="flex flex-col gap-4 p-5">
-            <input className={inputClass} value={backpack.bank || ""} onChange={e=>handleChange("backpack.bank", e.target.value)}/>
+            <input type="number" className={inputClass} value={backpack.bank || ""} onChange={e=>handleChange("backpack.bank", e.target.value)}/>
           </div>
         </div>
       </div>

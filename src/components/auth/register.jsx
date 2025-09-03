@@ -63,7 +63,7 @@ export default function Register({ state, setAuthState }) {
         <label className="inline-block font-semibold bg-black text-white text-center rounded-tr-md rounded-tl-md px-2 w-3/10">пароль</label>
         <input
         {...register("password", { required: "Введите пароль" })}
-        className="bg-white h-10 rounded-bl-md rounded-tr-md rounded-br-md shadow-xs border-2 px-2 border-black" />
+        className="bg-white h-10 rounded-bl-md rounded-tr-md rounded-br-md shadow-xs border-2 px-2 border-black" type="password"/>
         {errors.password && (
           <span className="text-red-500 text-sm">{errors.password.message}</span>
         )}

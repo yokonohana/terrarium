@@ -1,10 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateField } from "../../../store/charFormSlice.js";
 
-export default function Armor() {
-  const state = useSelector(s => s.characterForm.form);
-  const { body_parts } = state;
+export default function Armor({ value }) {
+  const { body_parts } = value;
   const dispatch = useDispatch();
 
   return (

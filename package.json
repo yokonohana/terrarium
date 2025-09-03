@@ -1,7 +1,8 @@
 {
   "name": "terrarium",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Альфа-версия. Реализован лист персонажа.",
   "type": "module",
   "scripts": {
     "dev": "node server.js",
@@ -27,6 +28,7 @@
     "react-router": "^7.7.1",
     "react-router-dom": "^7.7.1",
     "redux": "^5.0.1",
+    "redux-persist": "^6.0.0",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {

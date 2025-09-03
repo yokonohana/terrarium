@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateField } from "../../../store/charFormSlice.js";
 
-export default function Persona() {
+export default function Persona({ value }) {
     const dispatch = useDispatch();
-    const health = useSelector((state) => state.characterForm.form.health);
+    const { health } = value;
     
     const handleChange = (path, value) => {
       dispatch(updateField({ path, value }));

@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import userRoutes from "./routes/users.js";
+import charRoutes from "./routes/chars.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -11,6 +12,7 @@ async function createServer() {
 
   app.use(express.json());
   app.use("/api/user", userRoutes);
+  app.use("/api/characters", charRoutes);
 
   const vite = await createViteServer({
     server: { middlewareMode: true },

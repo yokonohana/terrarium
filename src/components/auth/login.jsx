@@ -43,7 +43,7 @@ export default function Login({ state, setAuthState }) {
 
       if (response.data.result?.status === "success") {
         setAuthState("idle");
-        dispatch(updateField({ status: "auth", id: response.data.result.id }));
+        dispatch(updateField({ status: "auth", userID: response.data.result.id, login: response.data.result.login }));
       }
     } catch (err) {
       if (err.response && err.response.data.message) {

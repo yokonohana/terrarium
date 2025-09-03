@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateField } from "../../../store/charFormSlice.js";
 
-export default function Skills() {
+export default function Skills({ value }) {
   const [openIndex, setOpenIndex] = useState(0);
   const skillsTabs = ["Боевые", "Профессиональные", "Разговорные"];
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.characterForm.form);
+  const { skillsCombat, skillsProfessional, skillsDialogue } = value;
   let mappedArr;
 
   const [inputExpMap, setInputExpMap] = useState({});
@@ -97,15 +97,15 @@ export default function Skills() {
   function getSkills(index) {
     switch (index) {
       case 0: {
-        mappedArr = state.skillsCombat || [];
+        mappedArr = skillsCombat || [];
         return getSkillCard(mappedArr, 'skillsCombat');
       }
       case 1: {
-        mappedArr = state.skillsProfessional || [];
+        mappedArr = skillsProfessional || [];
         return getSkillCard(mappedArr, 'skillsProfessional');
       }
       case 2: {
-        mappedArr = state.skillsDialogue || [];
+        mappedArr = skillsDialogue || [];
         return getSkillCard(mappedArr, 'skillsDialogue');
       }
       default:

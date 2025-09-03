@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  status: "idle",
+  status: "unauth",
   userID: null,
+  login: null
 };
 
 const userSlice = createSlice({
@@ -10,8 +11,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     updateField(state, action) {
-      state.status = action.payload.status;
-      state.userID = action.payload.id;
+      return {
+        ...state,
+        ...action.payload
+      }
     },
     resetForm(state) {
       state.status = "unauth";

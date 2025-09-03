@@ -12,6 +12,7 @@ export default function App() {
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<Home />} />
         <Route path="/character" element={<Character />} />
+        <Route path="/character/:id" element={<Character />} />
         <Route path="/characterslist" element={<CharactersList />} />
         <Route path="/rules" element={<Rules />} />
       </Routes>
