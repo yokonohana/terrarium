@@ -6,14 +6,14 @@ export const settings = {
     'role': null,
     'political_view': null,
     'religion_view': null,
-    'personality': null,
     'country': null,
-    'childhood': null,
-    'parents': null,
-    'fate_family': null,
-    'siblings': null,
-    'fortune': null,
-    'failure': null
+  },
+  'persona': {
+    'look': null,
+    'family': null,
+    'reputation': null,
+    'personality': null,
+    'aroundtheyears': null
   },
   'parameters': {
     'strenght': null,

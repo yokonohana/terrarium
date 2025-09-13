@@ -28,13 +28,14 @@ const characterFormSlice = createSlice({
       }
       temp[lastKey] = value;
     },
-
+    
     addSavedChar(state, action) {
-      const { id, data } = action.payload;
+      const { id, data, userId } = action.payload;
       if (state.savedChars[id]) {
         Object.assign(state.savedChars[id], data); // обновляем поля
+        state.savedChars[id].userId = userId;      // сохраняем владельца
       } else {
-        state.savedChars[id] = structuredClone(data); // если новый — добавляем
+        state.savedChars[id] = { ...structuredClone(data), userId }; // если новый — добавляем с userId
       }
     },
 
@@ -58,9 +59,14 @@ const characterFormSlice = createSlice({
       const id = action.payload;
       state.curCharId = id;
     },
+
+    clearSavedChars(state) {
+      state.curCharId = null;
+      state.savedChars = {};
+    },
   },
 });
 
-export const { updateField, resetForm, setStatus, addSavedChar, getSavedChars, setId } =
+export const { updateField, clearSavedChars, resetForm, setStatus, addSavedChar, getSavedChars, setId } =
   characterFormSlice.actions;
 export default characterFormSlice.reducer;

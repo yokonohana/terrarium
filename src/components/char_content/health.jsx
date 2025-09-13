@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { updateField } from "../../../store/charFormSlice.js";
 
-export default function Persona({ value }) {
+export default function Health({ value }) {
     const dispatch = useDispatch();
     const { health } = value;
     

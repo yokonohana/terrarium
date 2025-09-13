@@ -8,48 +8,82 @@ import Backpack from "./char_content/backpack.jsx";
 import Persona from "./char_content/persona.jsx";
 import Health from "./char_content/health.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getRandom,
-  getAge,
-  getCountry,
-  getPoliticalView,
-  getReligionView,
-  getSex,
-} from "../tools.js";
+import { getRandom, getAge, getCountry, getPoliticalView, getReligionView, getSex } from "../tools.js";
 import { updateField, addSavedChar, resetForm, setId } from "../../store/charFormSlice.js";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Character() {
-  const { id } = useParams(); // id, которое используем для отображения персонажа
+  const { id } = useParams();
   const dispatch = useDispatch();
 
   const userState = useSelector((state) => state.user);
   const charForm = useSelector((state) => state.characterForm);
-  const { form, savedChars, curCharId } = charForm;
+  const { form, savedChars } = charForm;
 
   const [draggedIndex, setDraggedIndex] = useState(null);
   const [curIndex, setCurIndex] = useState(0);
   const [infoGenerated, setInfoGenerated] = useState(false);
+  const [tempChar, setTempChar] = useState(null); // временный чужой персонаж
 
-  // Устанавливаем curCharId при смене id в url
+  // Подгружаем персонажа при смене id
   useEffect(() => {
+    async function getChar() {
+      try {
+        const response = await axios.get(`/api/characters/one/${id}`);
+        const { character } = response.data;
+
+        if (character) {
+          if (character.userId === userState.userID) {
+            // свой персонаж кладем в redux
+            dispatch(addSavedChar({ id: character.id, data: character.data, userId: character.userId }));
+          } else {
+            // чужой персонаж хранится только локально
+            setTempChar({ ...character.data, userId: character.userId });
+          }
+          dispatch(setId(character.id));
+        }
+      } catch (err) {
+        console.error("Ошибка загрузки персонажа:", err);
+      }
+    }
+
     if (id) {
-      dispatch(setId(id));
+      // если нет в savedChars или это чужой персонаж
+      if (!savedChars[id] || savedChars[id].userId !== userState.userID) {
+        getChar();
+      } else {
+        dispatch(setId(id));
+      }
     } else {
       dispatch(setId(null));
     }
-  }, [id, dispatch]);
+  }, [id, dispatch, savedChars, userState.userID]);
 
-  // Выбираем данные для формы: либо редактируемый персонаж, либо новая форма
-  const dataForm = curCharId ? savedChars[curCharId] : form;
+  // Выбираем данные для формы
+  const dataForm = (() => {
+    if (!id) return form; // новая форма
+    if (savedChars[id] && savedChars[id].userId === userState.userID) return savedChars[id]; // свой персонаж
+    return tempChar; // чужой временный персонаж
+  })();
+
+  const isOwner = !id || (savedChars[id] && savedChars[id].userId === userState.userID);
 
   if (!dataForm) return <div className="p-4">Персонаж не найден</div>;
+
+  // Универсальная функция изменения полей
+  const handleChange = (path, value) => {
+    if (!id) {
+      dispatch(updateField({ path, value }));
+    } else if (savedChars[id] && savedChars[id].userId === userState.userID) {
+      dispatch(updateField({ path, value }));
+    }
+  };
 
   const hasGeneratedParams = Object.values(dataForm.parameters || {}).some(
     (v) => v !== 0 && v !== null && v !== ""
   );
-  const showParButton = !curCharId && !hasGeneratedParams;
+  const showParButton = !id && !hasGeneratedParams;
   const showInfoButton = !infoGenerated;
 
   const params = [
@@ -92,25 +126,25 @@ export default function Character() {
     const valueDragged = params[draggedIndex].value;
     const valueDropped = params[index].value;
 
-    dispatch(updateField({ path: params[draggedIndex].path, value: valueDropped }));
-    dispatch(updateField({ path: params[index].path, value: valueDragged }));
+    handleChange(params[draggedIndex].path, valueDropped);
+    handleChange(params[index].path, valueDragged);
 
     setDraggedIndex(null);
   };
 
   const getPar = (min, max) => {
-    dispatch(updateField({ path: "parameters.strenght", value: getRandom(min, max) }));
-    dispatch(updateField({ path: "parameters.willpower", value: getRandom(min, max) }));
-    dispatch(updateField({ path: "parameters.intelligence", value: getRandom(min, max) }));
-    dispatch(updateField({ path: "parameters.activity", value: getRandom(min, max) }));
+    handleChange("parameters.strenght", getRandom(min, max));
+    handleChange("parameters.willpower", getRandom(min, max));
+    handleChange("parameters.intelligence", getRandom(min, max));
+    handleChange("parameters.activity", getRandom(min, max));
   };
 
   const getInfo = () => {
-    dispatch(updateField({ path: "general_info.political_view", value: getPoliticalView() }));
-    dispatch(updateField({ path: "general_info.religion_view", value: getReligionView() }));
-    dispatch(updateField({ path: "general_info.country", value: getCountry() }));
-    dispatch(updateField({ path: "general_info.sex", value: getSex() }));
-    dispatch(updateField({ path: "general_info.age", value: getAge() }));
+    handleChange("general_info.political_view", getPoliticalView());
+    handleChange("general_info.religion_view", getReligionView());
+    handleChange("general_info.country", getCountry());
+    handleChange("general_info.sex", getSex());
+    handleChange("general_info.age", getAge());
     setInfoGenerated(true);
   };
 
@@ -127,26 +161,16 @@ export default function Character() {
   };
 
   const saveCharacter = async () => {
+    if (!isOwner) return;
     try {
       const userId = userState.userID;
-
-      if (curCharId) {
-        // обновление существующего
-        const response = await axios.put(`/api/characters/update/${curCharId}`, {
-          userId,
-          data: dataForm,
-        });
-
+      if (id && savedChars[id] && savedChars[id].userId === userState.userID) {
+        const response = await axios.put(`/api/characters/update/${id}`, { userId, data: dataForm });
         if (response.status === 200) {
-          dispatch(addSavedChar({ id: curCharId, data: response.data.character.data }));
+          dispatch(addSavedChar({ id, data: response.data.character.data }));
         }
       } else {
-        // создание нового
-        const response = await axios.post("/api/characters/add", {
-          userId,
-          data: dataForm,
-        });
-
+        const response = await axios.post("/api/characters/add", { userId, data: dataForm });
         if (response.status === 201) {
           dispatch(addSavedChar({ id: response.data.character.id, data: response.data.character.data }));
           dispatch(resetForm());
@@ -157,7 +181,6 @@ export default function Character() {
       console.error(err);
     }
   };
-
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 font-sans text-gray-800">
@@ -171,14 +194,14 @@ export default function Character() {
                 className="text-4xl font-extrabold mb-2 text-gray-900 w-full"
                 placeholder="Введите имя..."
                 value={dataForm.name || ""}
-                onChange={(e) => dispatch(updateField({ path: "name", value: e.target.value }))}
+                onChange={(e) => handleChange("name", e.target.value)}
               />
               <input
                 type="text"
                 className="text-lg font-medium text-gray-600 uppercase tracking-wide w-full"
                 placeholder="Введите роль..."
                 value={dataForm.general_info.role || ""}
-                onChange={(e) => dispatch(updateField({ path: "general_info.role", value: e.target.value }))}
+                onChange={(e) => handleChange("general_info.role", e.target.value)}
               />
             </div>
 
@@ -202,7 +225,7 @@ export default function Character() {
                       onDragStart={onDragStart(i)}
                       onDragOver={onDragOver}
                       onDrop={onDrop(i)}
-                      onChange={(e) => dispatch(updateField({ path, value: e.target.value }))}
+                      onChange={(e) => handleChange(path, e.target.value)}
                       style={{ cursor: "grab" }}
                     />
                   </div>
@@ -212,7 +235,7 @@ export default function Character() {
 
             <div>
               <h2 className="text-2xl font-semibold text-gray-800 mb-4">Основная информация</h2>
-              {curCharId === null && showInfoButton ? (
+              {(!id && showInfoButton) ? (
                 <button
                   className="relative w-full px-6 py-3 rounded-lg font-semibold transition duration-100 cursor-pointer active:scale-95 bg-gray-300 text-gray-900 shadow-md border border-gray-400"
                   onClick={getInfo}
@@ -228,7 +251,7 @@ export default function Character() {
                         type="text"
                         className="flex-1 text-right font-semibold"
                         value={value}
-                        onChange={(e) => dispatch(updateField({ path, value: e.target.value }))}
+                        onChange={(e) => handleChange(path, e.target.value)}
                       />
                     </div>
                   ))}
@@ -245,9 +268,9 @@ export default function Character() {
                     <input
                       type="text"
                       className="text-right font-semibold"
-                      placeholder="Введите значение..."
+                      placeholder={key}
                       value={value}
-                      onChange={(e) => dispatch(updateField({ path, value: e.target.value }))}
+                      onChange={(e) => handleChange(path, e.target.value)}
                     />
                   </div>
                 ))}
@@ -257,19 +280,22 @@ export default function Character() {
             <div className="flex gap-4 mt-6">
               <button
                 onClick={saveCharacter}
-                className="relative px-6 py-3 rounded-lg font-semibold transition cursor-pointer duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1 bg-gray-300 text-gray-900 shadow-md border border-gray-400"
+                disabled={!isOwner}
+                className={`relative w-full px-6 py-3 rounded-lg font-semibold transition cursor-pointer duration-300 ease-in-out
+                  ${isOwner
+                    ? "bg-gray-300 text-gray-900 shadow-md border border-gray-400 hover:bg-gray-400"
+                    : "bg-gray-200 text-gray-400 border border-gray-300 cursor-not-allowed"}`}
               >
                 Сохранить персонажа
               </button>
-              {!curCharId ?
+              {!id ? (
                 <button
-                onClick={() => { dispatch(resetForm()); setInfoGenerated(false); }}
-                className="relative px-6 py-3 rounded-lg font-semibold transition cursor-pointer duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1 bg-gray-300 text-gray-900 shadow-md border border-gray-400"
-              >
-                Сбросить персонажа
-              </button> :
-              null
-              }
+                  onClick={() => { dispatch(resetForm()); setInfoGenerated(false); }}
+                  className="relative px-6 py-3 rounded-lg font-semibold transition cursor-pointer duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1 bg-gray-300 text-gray-900 shadow-md border border-gray-400"
+                >
+                  Сбросить персонажа
+                </button>
+              ) : null}
             </div>
           </aside>
 

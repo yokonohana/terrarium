@@ -1,6 +1,8 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import express from "express";
+import https from 'https';
+import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import userRoutes from "./routes/users.js";
 import charRoutes from "./routes/chars.js";
@@ -35,8 +37,13 @@ async function createServer() {
     }
   });
 
-  app.listen(5173, () => {
-    console.log("SPA server running at http://localhost:5173");
+  const options = {
+    key: fs.readFileSync("./certs/key.pem"),
+    cert: fs.readFileSync("./certs/cert.pem")
+  };
+
+  https.createServer(options, app).listen(5173, () => {
+    console.log("SPA server running at https://localhost:5173");
   });
 }
 

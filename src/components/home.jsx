@@ -2,10 +2,8 @@ import React from "react";
 import Header from './header.jsx';
 import Footer from './footer.jsx';
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 export default function Home() {
-  const data = useSelector(s => s.characterForm.savedChars);
   return (
     <>
       <div className="absolute inset-0 -z-10 bg-[url('/img/background.png')] bg-cover bg-bottom min-h-screen filter blur-md" />
@@ -21,11 +19,11 @@ export default function Home() {
               – хороших, плохих, неоднозначных – и попытайся сделать
               ими хоть что-то значительное, прежде чем их сожрут монстры, или общество.
             </p>
-            {/* <Link className="mt-3 select-none text-center mx-auto py-2 px-4 bg-slate-500 rounded-xl w-40 shadow-md/40" to={'/rules'}> */}
-              <button className="cursor-pointer" onClick={() => alert(JSON.stringify(data))}>
+            <Link className="mt-3 select-none text-center mx-auto py-2 px-4 bg-slate-500 rounded-xl w-40 shadow-md/40" to={'/rules'}>
+              <button className="cursor-pointer">
                 Правила
               </button>
-            {/* </Link> */}
+            </Link>
           </div>
         </main>
         <Footer />

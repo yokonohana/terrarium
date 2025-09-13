@@ -1,7 +1,7 @@
 import Header from "./header.jsx";
 import Footer from "./footer.jsx";
 
-export default function Rules() {
+export default function Archive() {
   return (
     <div className="flex flex-col min-h-screen w-screen">
       <Header />
